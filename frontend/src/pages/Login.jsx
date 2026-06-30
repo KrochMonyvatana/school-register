@@ -57,7 +57,7 @@ export default function Login() {
           </h1>
 
           <p className="text-center text-gray-300 text-sm mt-2 mb-8">
-            Sign in to access your dashboard
+            Sign in here
           </p>
 
           {/* FORM */}
