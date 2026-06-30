@@ -36,32 +36,25 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* BACKGROUND */}
-      <div
-        className="absolute inset-0 bg-cover bg-center scale-105"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80')",
-        }}
-      />
+      {/* Dark gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+        <div className="absolute top-[-10%] right-[-5%] w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-[-10%] left-[-5%] w-96 h-96 bg-purple-600/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-indigo-500/10 rounded-full blur-2xl"></div>
+      </div>
 
-      {/* DARK GRADIENT OVERLAY */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/80"></div>
-
-      {/* LOGIN CARD */}
+      {/* Login Card – darker glass */}
       <div className="relative z-10 w-full max-w-md px-6">
-        <div className="bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl rounded-2xl p-8">
-          {/* TITLE */}
+        <div className="bg-gray-900/60 backdrop-blur-xl border border-gray-700/60 shadow-2xl rounded-3xl p-8">
           <h1 className="text-3xl font-bold text-white text-center">
             Full-stack with Vatana
           </h1>
 
-          {/* 👇 UPDATED: moved down (mt-8), added icon, flex centering */}
-          <p className="text-center text-gray-300 text-sm mt-8 mb-6 flex items-center justify-center gap-2">
-            {/* Login icon (Heroicons style) */}
+          <p className="text-center text-gray-400 text-sm mt-8 mb-6 flex items-center justify-center gap-2">
+            Sign in here
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-4 h-4"
+              className="w-4 h-4 text-indigo-400"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -73,51 +66,62 @@ export default function Login() {
                 d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
               />
             </svg>
-            Sign in here
           </p>
 
-          {/* FORM */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="text-sm text-gray-200">Username</label>
+              <label className="text-sm text-gray-300">Username</label>
               <input
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Enter username"
-                className="w-full mt-1 px-4 py-3 rounded-lg bg-white/90 focus:bg-white outline-none"
+                className="w-full mt-1 px-4 py-3 rounded-xl bg-gray-800/80 focus:bg-gray-800 text-white outline-none focus:ring-2 focus:ring-indigo-500 transition border border-gray-700"
                 required
               />
             </div>
 
             <div>
-              <label className="text-sm text-gray-200">Password</label>
+              <label className="text-sm text-gray-300">Password</label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter password"
-                className="w-full mt-1 px-4 py-3 rounded-lg bg-white/90 focus:bg-white outline-none"
+                className="w-full mt-1 px-4 py-3 rounded-xl bg-gray-800/80 focus:bg-gray-800 text-white outline-none focus:ring-2 focus:ring-indigo-500 transition border border-gray-700"
                 required
               />
             </div>
 
             {error && (
-              <div className="bg-red-500/20 border border-red-400 text-red-200 text-sm px-3 py-2 rounded-lg">
+              <div className="bg-red-500/20 border border-red-500/40 text-red-200 text-sm px-4 py-3 rounded-xl flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
                 {error}
               </div>
             )}
 
             <button
               type="submit"
-              className="w-full mt-2 py-3 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white font-semibold transition"
+              className="w-full mt-2 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold transition shadow-lg hover:shadow-indigo-500/20 flex items-center justify-center gap-2"
             >
               Log In
             </button>
           </form>
 
-          {/* FOOTER HINT */}
-          <p className="text-center text-gray-400 text-xs mt-6">
+          <p className="text-center text-gray-500 text-xs mt-6">
             Demo: admin / 1234
           </p>
         </div>
