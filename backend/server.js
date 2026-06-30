@@ -3,19 +3,12 @@ const cors = require("cors");
 const db = require("./db");
 
 const app = express();
+const PORT = 5001;
 
-// ✅ IMPORTANT: Render needs process.env.PORT
-const PORT = process.env.PORT || 5001;
-
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-/**
- * FAKE LOGIN
- * username: admin
- * password: 1234
- */
+/* ---------------- LOGIN (same as before) ---------------- */
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
 
@@ -32,26 +25,20 @@ app.post("/login", (req, res) => {
   });
 });
 
-/**
- * GET ALL STUDENTS
- */
-app.get("/students", (req, res) => {
+/* ---------------- GET STUDENTS ---------------- */
+app.get("/students", async (req, res) => {
   try {
-    const students = db
-      .prepare("SELECT * FROM students ORDER BY id DESC")
-      .all();
+    const result = await db.query("SELECT * FROM students ORDER BY id DESC");
 
-    res.json(students);
+    res.json(result.rows);
   } catch (err) {
     console.error("GET /students error:", err);
     res.status(500).json({ message: "Failed to fetch students" });
   }
 });
 
-/**
- * ADD STUDENT
- */
-app.post("/students", (req, res) => {
+/* ---------------- ADD STUDENT ---------------- */
+app.post("/students", async (req, res) => {
   const { name, age, class: studentClass } = req.body;
 
   if (!name || !age || !studentClass) {
@@ -61,26 +48,19 @@ app.post("/students", (req, res) => {
   }
 
   try {
-    const stmt = db.prepare(
-      "INSERT INTO students (name, age, class) VALUES (?, ?, ?)"
+    const result = await db.query(
+      "INSERT INTO students (name, age, class) VALUES ($1, $2, $3) RETURNING *",
+      [name, age, studentClass],
     );
 
-    const result = stmt.run(name, age, studentClass);
-
-    const newStudent = db
-      .prepare("SELECT * FROM students WHERE id = ?")
-      .get(result.lastInsertRowid);
-
-    res.status(201).json(newStudent);
+    res.status(201).json(result.rows[0]);
   } catch (err) {
     console.error("POST /students error:", err);
     res.status(500).json({ message: "Failed to add student" });
   }
 });
 
-/**
- * START SERVER
- */
+/* ---------------- START SERVER ---------------- */
 app.listen(PORT, () => {
-  console.log(`Backend running on port ${PORT}`);
+  console.log(`Backend running at http://localhost:${PORT}`);
 });
