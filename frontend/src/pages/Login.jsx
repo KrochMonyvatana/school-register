@@ -36,13 +36,12 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
-
       {/* BACKGROUND */}
       <div
         className="absolute inset-0 bg-cover bg-center scale-105"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80')"
+            "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80')",
         }}
       />
 
@@ -51,12 +50,10 @@ export default function Login() {
 
       {/* LOGIN CARD */}
       <div className="relative z-10 w-full max-w-md px-6">
-
         <div className="bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl rounded-2xl p-8">
-
           {/* TITLE */}
           <h1 className="text-3xl font-bold text-white text-center">
-            School Register
+            Full-stack with Vatana
           </h1>
 
           <p className="text-center text-gray-300 text-sm mt-2 mb-8">
@@ -65,7 +62,6 @@ export default function Login() {
 
           {/* FORM */}
           <form onSubmit={handleSubmit} className="space-y-4">
-
             <div>
               <label className="text-sm text-gray-200">Username</label>
               <input
@@ -102,14 +98,12 @@ export default function Login() {
             >
               Log In
             </button>
-
           </form>
 
           {/* FOOTER HINT */}
           <p className="text-center text-gray-400 text-xs mt-6">
             Demo: admin / 1234
           </p>
-
         </div>
       </div>
     </div>
