@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
+// ✅ Backend URL (Render)
+const BASE_URL = "https://school-register-5e82.onrender.com";
+
 export default function StudentForm() {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -15,7 +18,7 @@ export default function StudentForm() {
     setSuccess("");
 
     try {
-      const response = await fetch("http://localhost:5001/students", {
+      const response = await fetch(`${BASE_URL}/students`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -35,7 +38,6 @@ export default function StudentForm() {
       setAge("");
       setStudentClass("");
 
-      // Go back to the dashboard after a short pause so the user sees the message.
       setTimeout(() => navigate("/dashboard"), 800);
     } catch (err) {
       console.error(err);
@@ -54,63 +56,48 @@ export default function StudentForm() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">
-              Full Name
-            </label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="e.g. Sophea Chan"
-              className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-              required
-            />
-          </div>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Full Name"
+            className="w-full border px-3 py-2 rounded-lg"
+            required
+          />
 
-          <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">
-              Age
-            </label>
-            <input
-              type="number"
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
-              placeholder="e.g. 14"
-              min="1"
-              className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-              required
-            />
-          </div>
+          <input
+            type="number"
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
+            placeholder="Age"
+            className="w-full border px-3 py-2 rounded-lg"
+            required
+          />
 
-          <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">
-              Class
-            </label>
-            <input
-              type="text"
-              value={studentClass}
-              onChange={(e) => setStudentClass(e.target.value)}
-              placeholder="e.g. Grade 9A"
-              className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-              required
-            />
-          </div>
+          <input
+            type="text"
+            value={studentClass}
+            onChange={(e) => setStudentClass(e.target.value)}
+            placeholder="Class"
+            className="w-full border px-3 py-2 rounded-lg"
+            required
+          />
 
           {error && (
-            <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+            <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded">
               {error}
             </p>
           )}
+
           {success && (
-            <p className="text-sm text-green-700 bg-green-50 border border-green-200 rounded-lg px-3 py-2">
+            <p className="text-sm text-green-700 bg-green-50 px-3 py-2 rounded">
               {success}
             </p>
           )}
 
           <button
             type="submit"
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 rounded-lg transition"
+            className="w-full bg-indigo-600 text-white py-2 rounded-lg"
           >
             Save Student
           </button>
