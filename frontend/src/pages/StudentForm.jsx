@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-const BASE_URL = "http://localhost:5001";
+const BASE_URL = "https://school-register-5e82.onrender.com";
 
 export default function StudentForm() {
   const [name, setName] = useState("");
