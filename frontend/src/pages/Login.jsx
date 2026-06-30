@@ -26,77 +26,91 @@ export default function Login() {
         localStorage.setItem("loggedIn", "true");
         navigate("/dashboard");
       } else {
-        setError(data.message || "Login failed");
+        setError(data.message || "Invalid login credentials");
       }
     } catch (err) {
       console.error(err);
-      setError("Could not reach server. Check backend.");
+      setError("Server not reachable. Try again later.");
     }
   }
 
   return (
-    <div
-      className="min-h-screen flex items-center justify-center relative"
-      style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80')",
-        backgroundSize: "cover",
-        backgroundPosition: "center"
-      }}
-    >
-      {/* DARK OVERLAY */}
-      <div className="absolute inset-0 bg-black/60"></div>
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
 
-      {/* LOGIN BOX */}
-      <div className="relative z-10 bg-white shadow-md rounded-xl p-8 w-full max-w-sm">
+      {/* BACKGROUND */}
+      <div
+        className="absolute inset-0 bg-cover bg-center scale-105"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80')"
+        }}
+      />
 
-        <h1 className="text-2xl font-bold text-slate-800 mb-1 text-center">
-          School Register
-        </h1>
+      {/* DARK GRADIENT OVERLAY */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/80"></div>
 
-        <p className="text-sm text-slate-500 text-center mb-6">
-          Sign in to continue
-        </p>
+      {/* LOGIN CARD */}
+      <div className="relative z-10 w-full max-w-md px-6">
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl rounded-2xl p-8">
 
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="admin"
-            className="w-full border px-3 py-2 rounded-lg"
-            required
-          />
+          {/* TITLE */}
+          <h1 className="text-3xl font-bold text-white text-center">
+            School Register
+          </h1>
 
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="1234"
-            className="w-full border px-3 py-2 rounded-lg"
-            required
-          />
+          <p className="text-center text-gray-300 text-sm mt-2 mb-8">
+            Sign in to access your dashboard
+          </p>
 
-          {error && (
-            <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded">
-              {error}
-            </p>
-          )}
+          {/* FORM */}
+          <form onSubmit={handleSubmit} className="space-y-4">
 
-          <button
-            type="submit"
-            className="w-full bg-indigo-600 text-white py-2 rounded-lg"
-          >
-            Log In
-          </button>
+            <div>
+              <label className="text-sm text-gray-200">Username</label>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Enter username"
+                className="w-full mt-1 px-4 py-3 rounded-lg bg-white/90 focus:bg-white outline-none"
+                required
+              />
+            </div>
 
-        </form>
+            <div>
+              <label className="text-sm text-gray-200">Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter password"
+                className="w-full mt-1 px-4 py-3 rounded-lg bg-white/90 focus:bg-white outline-none"
+                required
+              />
+            </div>
 
-        <p className="text-xs text-slate-400 text-center mt-6">
-          admin / 1234
-        </p>
+            {error && (
+              <div className="bg-red-500/20 border border-red-400 text-red-200 text-sm px-3 py-2 rounded-lg">
+                {error}
+              </div>
+            )}
 
+            <button
+              type="submit"
+              className="w-full mt-2 py-3 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white font-semibold transition"
+            >
+              Log In
+            </button>
+
+          </form>
+
+          {/* FOOTER HINT */}
+          <p className="text-center text-gray-400 text-xs mt-6">
+            Demo: admin / 1234
+          </p>
+
+        </div>
       </div>
     </div>
   );
