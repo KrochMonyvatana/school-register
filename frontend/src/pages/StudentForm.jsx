@@ -1,15 +1,19 @@
 return (
-  <div
-    className="min-h-screen relative flex items-center justify-center p-6 overflow-hidden bg-cover bg-center"
-    style={{
-      backgroundImage:
-        "url('https://images.pexels.com/photos/7972324/pexels-photo-7972324.jpeg')"
-    }}
-  >
-    {/* DARK OVERLAY */}
-    <div className="absolute top-0 left-0 w-full h-full bg-black/50"></div>
+  <div className="min-h-screen relative flex items-center justify-center p-6 overflow-hidden">
 
-    {/* FORM CONTAINER */}
+    {/* BACKGROUND IMAGE */}
+    <div
+      className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
+      style={{
+        backgroundImage:
+          "url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80')"
+      }}
+    ></div>
+
+    {/* DARK OVERLAY */}
+    <div className="absolute top-0 left-0 w-full h-full bg-black/60"></div>
+
+    {/* FORM */}
     <div className="relative z-10 bg-white/90 backdrop-blur-md shadow-md rounded-xl p-8 w-full max-w-md">
 
       <div className="flex items-center justify-between mb-6">
