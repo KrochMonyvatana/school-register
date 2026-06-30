@@ -1,13 +1,13 @@
-// server.js
 const express = require("express");
 const cors = require("cors");
 const db = require("./db");
 
 const app = express();
 
-// ✅ Use safe port (avoids 5000 conflict)
-const PORT = 5001;
+// ✅ IMPORTANT: Render needs process.env.PORT
+const PORT = process.env.PORT || 5001;
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
@@ -82,5 +82,5 @@ app.post("/students", (req, res) => {
  * START SERVER
  */
 app.listen(PORT, () => {
-  console.log(`Backend running at http://localhost:${PORT}`);
+  console.log(`Backend running on port ${PORT}`);
 });
