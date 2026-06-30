@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// ✅ Backend URL (Render)
 const BASE_URL = "https://school-register-5e82.onrender.com";
 
 export default function Login() {
@@ -36,8 +35,21 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-100">
-      <div className="bg-white shadow-md rounded-xl p-8 w-full max-w-sm">
+    <div
+      className="min-h-screen flex items-center justify-center relative"
+      style={{
+        backgroundImage:
+          "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80')",
+        backgroundSize: "cover",
+        backgroundPosition: "center"
+      }}
+    >
+      {/* DARK OVERLAY */}
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      {/* LOGIN BOX */}
+      <div className="relative z-10 bg-white shadow-md rounded-xl p-8 w-full max-w-sm">
+
         <h1 className="text-2xl font-bold text-slate-800 mb-1 text-center">
           School Register
         </h1>
@@ -47,6 +59,7 @@ export default function Login() {
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
+
           <input
             type="text"
             value={username}
@@ -77,11 +90,13 @@ export default function Login() {
           >
             Log In
           </button>
+
         </form>
 
         <p className="text-xs text-slate-400 text-center mt-6">
           admin / 1234
         </p>
+
       </div>
     </div>
   );
